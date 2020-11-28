@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+sourceCompatibility = 1.8
+
+ext {
+    restAssuredVersion = '3.3.0'
+    testNgVersion = '6.13'
+}
+
+dependencies {
+    compile "io.rest-assured:rest-assured:$restAssuredVersion"
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.29'
+    compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.10'
+    compile group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.8.1'
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.8.1'
+    testCompile "org.testng:testng:$testNgVersion"
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.11.1'
+}
+
+test {
+    useTestNG()
+    systemProperties System.getProperties()
+
+    testLogging() {
+        events "PASSED", "FAILED", "SKIPPED"
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+
+    test.outputs.upToDateWhen { false }
+}
+
+allure {
+    version = '2.8.1'
+    aspectjweaver = true
+    configuration = 'compile'
+    autoconfigure = true
+}
