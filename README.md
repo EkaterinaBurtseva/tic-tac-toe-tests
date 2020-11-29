@@ -28,6 +28,10 @@ will be located here jsonplaceholder-tests/api-tests/build/reports/allure-report
  allure serve allure-results
 ```
 Latest report:
+![Screenshot 2020-11-29 at 19 34 53](Screenshot 2020-11-29 at 19.34.53.png)
+
+![Screenshot 2020-11-29 at 19 35 27](Screenshot 2020-11-29 at 19.35.27.png)
+
 # TODO
 * add BDD support (e.g Cucumber)
 * extend existing coverage
